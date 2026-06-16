@@ -85,7 +85,7 @@ spec:
   volumes:
   - name: nginx-index-file
     configMap:
-      name: index-html-main  
+      name: index-html-main
   containers:
   - image: nginx
     name: ingressdemoapp-main
@@ -108,7 +108,7 @@ spec:
   volumes:
   - name: nginx-index-file
     configMap:
-      name: index-html-doc  
+      name: index-html-doc
   containers:
   - image: nginx
     name: ingressdemoapp-doc
@@ -226,21 +226,21 @@ spec:
   - http:
       paths:
       - path: /main(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: mainpage-svc
-            port: 
+            port:
               number: 80
       - path: /doc(/|$)(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: docpage-svc
-            port: 
+            port:
               number: 80
       - path: /(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: mainpage-svc
