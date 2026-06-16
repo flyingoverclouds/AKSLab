@@ -162,7 +162,7 @@ data:
    </br>
    <h2>Hi! This is a configmap Index file for the deployment</h2>
    <img src="https://i0.wp.com/training.cellenza.com/wp-content/uploads/2021/08/logo-Cellenza-Training-VF2.jpg" />
-   </html
+   </html>
 
 ```
 
@@ -200,7 +200,7 @@ spec:
   ports:
   - port: 8088
     protocol: TCP
-    targetPort: 80  
+    targetPort: 80
   selector:
     app: testdeployment
 status:
@@ -238,7 +238,7 @@ spec:
           name: index-html-configmap
       - name: nginxlogs
         persistentVolumeClaim:
-          claimName: azurefile3      
+          claimName: azurefile3
       containers:
       - image: nginx
         name: nginx
@@ -246,7 +246,7 @@ spec:
         - name: nginx-index-file
           mountPath: /usr/share/nginx/html/
         - name: nginxlogs
-          mountPath: /var/log/nginx/          
+          mountPath: /var/log/nginx/
         resources: {}
 status: {}
 
@@ -334,7 +334,7 @@ yumemaru@Azure:~/LabAKS$ k get statefulsets.apps -A
 
 ```
 
-Now let's have a look at one daemonset in particular:
+Now let's have a look at one daemonset in particular (you can also user azure-ip-masq-agent):
 
 ```bash
 
@@ -437,4 +437,9 @@ Pod Template:
     HostPathType:  
 Events:            <none>
 
+```
+If MS Defender is not deployed on your cluster, You can look at this daemonset : azure-ip-masq-agent
+
+```sh
+kubectl describe daemonsets.apps -n kube-system azure-ip-masq-agent
 ```
