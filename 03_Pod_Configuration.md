@@ -336,7 +336,7 @@ spec:
     env:
     - name: SQLPWD
       valueFrom:
-        secretKeyRef: 
+        secretKeyRef:
           name: testsecretforenvvar
           key: sqlpassword
     resources: {}
