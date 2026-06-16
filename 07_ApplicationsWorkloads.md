@@ -443,3 +443,61 @@ If MS Defender is not deployed on your cluster, You can look at this daemonset :
 ```sh
 kubectl describe daemonsets.apps -n kube-system azure-ip-masq-agent
 ```
+
+```
+Name:           azure-ip-masq-agent
+Namespace:      kube-system
+Selector:       k8s-app=azure-ip-masq-agent,tier=node
+Node-Selector:  <none>
+Labels:         app.kubernetes.io/managed-by=Eno
+                component=azure-ip-masq-agent
+                kubernetes.azure.com/managedby=aks
+                tier=node
+Annotations:    deprecated.daemonset.template.generation: 1
+Desired Number of Nodes Scheduled: 1
+Current Number of Nodes Scheduled: 1
+Number of Nodes Scheduled with Up-to-date Pods: 1
+Number of Nodes Scheduled with Available Pods: 1
+Number of Nodes Misscheduled: 0
+Pods Status:  1 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  app.kubernetes.io/managed-by=Eno
+           k8s-app=azure-ip-masq-agent
+           kubernetes.azure.com/managedby=aks
+           tier=node
+  Containers:
+   azure-ip-masq-agent:
+    Image:      mcr.microsoft.com/oss/v2/azure/ip-masq-agent-v2:v0.1.16-2
+    Port:       <none>
+    Host Port:  <none>
+    Args:
+      --v=2
+      --resync-interval=60
+    Limits:
+      cpu:     500m
+      memory:  250Mi
+    Requests:
+      cpu:        50m
+      memory:     36Mi
+    Environment:  <none>
+    Mounts:
+      /etc/config from azure-ip-masq-agent-config-volume (rw)
+      /run/xtables.lock from iptableslock (rw)
+  Volumes:
+   azure-ip-masq-agent-config-volume:
+    Type:           Projected (a volume that contains injected data from multiple sources)
+    ConfigMapName:  azure-ip-masq-agent-config
+    Optional:       true
+    ConfigMapName:  azure-ip-masq-agent-config-reconciled
+    Optional:       true
+   iptableslock:
+    Type:               HostPath (bare host directory volume)
+    Path:               /run/xtables.lock
+    HostPathType:       FileOrCreate
+  Priority Class Name:  system-node-critical
+  Node-Selectors:       <none>
+  Tolerations:          :NoExecute op=Exists
+                        :NoSchedule op=Exists
+                        CriticalAddonsOnly op=Exists
+Events:                 <none>
+```
