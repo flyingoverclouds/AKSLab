@@ -242,7 +242,7 @@ spec:
     - name: MY_NODE_NAME
       valueFrom:
         fieldRef:
-          fieldPath: spec.spodeName
+          fieldPath: spec.nodeName
     volumeMounts:
     - name: vol
       mountPath: /vol
