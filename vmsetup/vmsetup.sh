@@ -35,7 +35,10 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
-#----- Installrtion AZ CLI ( from https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux )
+#----- Installation AZ CLI ( from https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux )
 curl -fsSL 'https://azurecliprod.blob.core.windows.net/$root/deb_install.sh' | sudo bash
 
+
+#----- install Kubectl using azcli
+sudo az aks install-cli
 
