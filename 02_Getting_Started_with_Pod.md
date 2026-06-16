@@ -242,8 +242,8 @@ spec:
     - name: MY_NODE_NAME
       valueFrom:
         fieldRef:
-          fieldPath: spec.spodeName                           
-    volumeMounts:                                                                 
+          fieldPath: spec.spodeName
+    volumeMounts:
     - name: vol
       mountPath: /vol
   - image: busybox:1.31.1
