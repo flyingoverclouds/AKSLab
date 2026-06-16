@@ -40,10 +40,10 @@ Verify the existence of an azure file share and what it contains.
 
 ```bash
 
-yumemaru@Azure:~/LabAKS$ az storage share list --account-name stafile1 --account-key $STORAGE_KEY | jq .[].name
+yumemaru@Azure:~/LabAKS$ az storage share list --account-name $STAName $ --account-key $STORAGE_KEY | jq .[].name
 "aksshare"
 
-yumemaru@Azure:~/LabAKS$ az storage file list --account-name stafile1 --account-key $STORAGE_KEY --share-name aksshare | jq .[].name
+yumemaru@Azure:~/LabAKS$ az storage file list --account-name $STAName --account-key $STORAGE_KEY --share-name aksshare | jq .[].name
 "index.html"
 
 ```
@@ -75,9 +75,9 @@ spec:
   csi:
     driver: file.csi.azure.com
     readOnly: false
-    volumeHandle: # Use a random UID Generator to get this b927e987-cabc-42bd-b55b-bc188b59f07a
+    volumeHandle: # Use a random UID Generator to get this b927e987-cabc-42bd-b55b-bc188b59f07a | https://guidgenerator.com/
     volumeAttributes:
-      resourceGroup: rsg-aksTraining1  
+      resourceGroup: XXXXX # REPLACE_WITH_YOUR_PERSONNAL_RESOURCE_GROUP
       shareName: aksshare
     nodeStageSecretRef:
       name: azure-secret
@@ -240,7 +240,7 @@ spec:
   storageClassName: azurefile-csi
   resources:
     requests:
-      storage: 100Gi
+      storage: 10Gi
 
 ```
 
@@ -292,10 +292,10 @@ spec:
   - image: nginx:1.17.6-alpine
     name: c1
     resources: {}
-    env:                
+    env:
     - name: MY_NODE_NAME
-      valueFrom:        
-        fieldRef:       
+      valueFrom:
+        fieldRef:
           fieldPath: spec.nodeName
     volumeMounts:
     - name: vol
@@ -314,8 +314,8 @@ spec:
       mountPath: /vol
   dnsPolicy: ClusterFirst
   restartPolicy: Always
-  volumes:                 
-    - name: vol            
+  volumes:
+    - name: vol
       persistentVolumeClaim:
         claimName: azurefile2
 
