@@ -1,5 +1,11 @@
 #!/bin/sh
-
+# curl -fsSL https://raw.githubusercontent.com/flyingoverclouds/AKSLab/refs/heads/main/vmsetup/vmsetup.sh -o $HOME/vmsetup.sh
+# chmod +x $HOME/vmsetup.sh
+# $HOME/vmsetup.sh
+#
+# OU execution automatique : 
+#       curl -fsSL https://raw.githubusercontent.com/flyingoverclouds/AKSLab/refs/heads/main/vmsetup/vmsetup.sh | sh
+#
 #----- update Linux
 sudo apt update -y
 sudo apt upgrade -y
