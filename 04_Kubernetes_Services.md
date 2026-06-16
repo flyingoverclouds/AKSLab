@@ -18,7 +18,7 @@ spec:
   ports:
   - port: 8080
     protocol: TCP
-    targetPort: 80  
+    targetPort: 80
   selector:
     run: podwithconfig
 
