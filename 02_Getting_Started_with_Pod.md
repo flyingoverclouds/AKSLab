@@ -227,7 +227,6 @@ In this case the `containers` in the yaml file will have more than one image ref
 Create a manifest as below:
 
 ```yaml
-
 apiVersion: v1
 kind: Pod
 metadata:
@@ -239,30 +238,29 @@ spec:
   - image: nginx:1.17.6-alpine
     name: c1
     resources: {}
-    env:                
+    env:
     - name: MY_NODE_NAME
-      valueFrom:        
-        fieldRef:       
-          fieldPath: spec.nodeName                                                                                                                   
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.spodeName                           
     volumeMounts:                                                                 
-    - name: vol                                                                   
-      mountPath: /vol                                                             
-  - image: busybox:1.31.1                                                         
-    name: c2                                                                      
-    command: ["sh", "-c", "while true; do date >> /vol/date.log; sleep 1; done"]  
-    volumeMounts:                                                                 
-    - name: vol                                                                   
-      mountPath: /vol                                                             
-  - image: busybox:1.31.1                                                         
-    name: c3                                                                      
-    command: ["sh", "-c", "tail -f /vol/date.log"]                                
-    volumeMounts:                                                                 
-    - name: vol                                                                   
-      mountPath: /vol                                                             
+    - name: vol
+      mountPath: /vol
+  - image: busybox:1.31.1
+    name: c2
+    command: ["sh", "-c", "while true; do date >> /vol/date.log; sleep 1; done"]
+    volumeMounts:
+    - name: vol
+      mountPath: /vol
+  - image: busybox:1.31.1
+    name: c3
+    command: ["sh", "-c", "tail -f /vol/date.log"]
+    volumeMounts:
+    - name: vol
+      mountPath: /vol
   dnsPolicy: ClusterFirst
   restartPolicy: Always
-  volumes:                 
-    - name: vol            
+  volumes:
+    - name: vol
       emptyDir: {}
-
 ```

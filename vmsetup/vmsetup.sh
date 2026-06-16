@@ -3,7 +3,7 @@
 # chmod +x $HOME/vmsetup.sh
 # $HOME/vmsetup.sh
 #
-# OU execution automatique : 
+# OU execution automatique (possible de lancer via az vm invoke-command ... à tester): 
 #       curl -fsSL https://raw.githubusercontent.com/flyingoverclouds/AKSLab/refs/heads/main/vmsetup/vmsetup.sh | sh
 #
 #----- update Linux
@@ -48,3 +48,8 @@ curl -fsSL 'https://azurecliprod.blob.core.windows.net/$root/deb_install.sh' | s
 #----- install Kubectl using azcli
 sudo az aks install-cli
 
+#----- install helm
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4 | bash
+
+# add k alias
+echo -e "alias k=kubectl\n" >> $HOME/.bashrc
